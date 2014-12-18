@@ -1,0 +1,7 @@
+{
+    "name": "google-maps-plugin",
+    "private": true,
+    "dependencies": {
+        "jquery-colorbox": "~1.5.14"
+    }
+}
