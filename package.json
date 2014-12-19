@@ -1,7 +1,5 @@
 {
-    "name": "google-maps-plugin",
     "version": "1.0.0",
-    "private": true,
     "devDependencies": {
         "bower": "~1.3.12",
         "gulp": "~3.8.10",
