@@ -141,7 +141,7 @@ class Plugin extends \Mibew\Plugin\AbstractPlugin implements \Mibew\Plugin\Plugi
      */
     public static function getVersion()
     {
-        return '1.0.0';
+        return '1.0.1';
     }
 
     /**
@@ -164,7 +164,7 @@ class Plugin extends \Mibew\Plugin\AbstractPlugin implements \Mibew\Plugin\Plugi
             throw new \RuntimeException('Google API key cannot be empty');
         }
 
-        return 'http://maps.googleapis.com/maps/api/js?key='
+        return '//maps.googleapis.com/maps/api/js?key='
             . $this->config['api_key']
             . '&sensor=false';
     }
