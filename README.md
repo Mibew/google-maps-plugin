@@ -5,7 +5,7 @@ It shows your clients' location at Google maps!
 
 ## Installation
 
-1. Get the archive with the plugin sources. At the moment the only option is to build the plugin from sources.
+1. Get the archive with the plugin sources. You can download it from the [official site](https://mibew.org/plugins#mibew-google-maps) or build the plugin from sources.
 
 2. Untar/unzip the plugin's archive.
 
