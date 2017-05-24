@@ -75,16 +75,13 @@ class Plugin extends \Mibew\Plugin\AbstractPlugin implements \Mibew\Plugin\Plugi
     public function usersFunctionCallHandler(&$function)
     {
         if ($function['function'] == 'googleMapsGetInfo') {
-            // An IP string can contain more than one IP adress. For example it
-            // can be something like this: "x.x.x.x (x.x.x.x)". Thus we need to
-            // extract all IPS from the string and use the last one.
-            $count = preg_match_all(
-                "/(?:(?:[0-9]{1,3}\.){3}[0-9]{1,3})/",
-                $function['arguments']['ip'],
-                $matches
-            );
-            if (!$count) {
-                // There is no IP in the string. An error should be returned.
+            // An IP string can contain more than one IP address. For example it
+            // can be something like this: "x.x.x.x (x.x.x.x)". We need to
+            // use only first one.
+            $ips = explode(' ', $function['arguments']['ip'], 2);
+            $ip = filter_var($ips[0], FILTER_VALIDATE_IP);
+            if (!$ip) {
+                // There is no valid IP in the string. An error should be returned.
                 $function['results'] = array(
                     'errorCode' => 1,
                     'errorMessage' => 'The specified IP is invalid!',
@@ -92,7 +89,6 @@ class Plugin extends \Mibew\Plugin\AbstractPlugin implements \Mibew\Plugin\Plugi
 
                 return;
             }
-            $ip = end($matches[0]);
             $info = PluginManager::getInstance()
                 ->getPlugin('Mibew:GeoIp')
                 ->getGeoInfo($ip, get_current_locale());
