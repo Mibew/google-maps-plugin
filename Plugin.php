@@ -110,12 +110,13 @@ class Plugin extends \Mibew\Plugin\AbstractPlugin implements \Mibew\Plugin\Plugi
     public function pageAddJsHandler(&$args)
     {
         if ($args['request']->attributes->get('_route') == 'users') {
-            $args['js'][] = $this->getFilesPath() . '/vendor/jquery-colorbox/jquery.colorbox-min.js';
+            $filepath = str_replace(DIRECTORY_SEPARATOR, '/', $this->getFilesPath());
+            $args['js'][] = $filepath . '/vendor/jquery-colorbox/jquery.colorbox-min.js';
             $args['js'][] = array(
                 'content' => $this->getApiUrl(),
                 'type' => AssetManagerInterface::ABSOLUTE_URL,
             );
-            $args['js'][] = $this->getFilesPath() . '/js/plugin.js';
+            $args['js'][] = $filepath . '/js/plugin.js';
         }
     }
 
@@ -127,8 +128,9 @@ class Plugin extends \Mibew\Plugin\AbstractPlugin implements \Mibew\Plugin\Plugi
     public function pageAddCssHandler(&$args)
     {
         if ($args['request']->attributes->get('_route') == 'users') {
-            $args['css'][] = $this->getFilesPath() . '/vendor/jquery-colorbox/example3/colorbox.css';
-            $args['css'][] = $this->getFilesPath() . '/css/styles.css';
+            $filepath = str_replace(DIRECTORY_SEPARATOR, '/', $this->getFilesPath());
+            $args['css'][] = $filepath . '/vendor/jquery-colorbox/example3/colorbox.css';
+            $args['css'][] = $filepath . '/css/styles.css';
         }
     }
 
